@@ -15,7 +15,7 @@ class SampleAppStack(Stack):
 
         role = iam.Role(self, "MyRole",
                 assumed_by=iam.ServicePrincipal("lambda.amazonaws.com"),
-                name="abc",
+                role_name="abc",
                 description="abc"
             )
 
