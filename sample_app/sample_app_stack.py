@@ -12,7 +12,7 @@ class SampleAppStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        role = iam(self, "MyRole",
+        role = iam.Role(self, "MyRole",
                 assumed_by=iam.ServicePrincipal("lambda.amazonaws.com")
             )
 
