@@ -14,22 +14,22 @@ class SampleAppStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        fn_role = iam.Role(self, "bi-createdatasetgroups",
+        lambda_datasetgroups_role = iam.Role(self, "bi-lambda-datasetgroups-role",
                 assumed_by=iam.ServicePrincipal("lambda.amazonaws.com"),
-                role_name="bi-createdatasetgroups",
-                description="bi-createdatasetgroups"
+                role_name="bi-lambda-datasetgroups-role",
+                description="bi-lambda-datasetgroups-role"
             )
         
-        fn_function = lambda_.Function(
+        bi_lambda_datasetgroups_role_function = lambda_.Function(
             self,
-            "bi-createdatasetgroups",
+            "bi-lambda-datasetgroups-role-function",
             runtime=lambda_.Runtime.PYTHON_3_9,
-            function_name="bi-createdatasetgroups",
-            description="bi-createdatasetgroups",
+            function_name="bi-lambda-datasetgroups-role-function",
+            description="bi-lambda-datasetgroups-role-function",
             code=lambda_.Code.from_asset('./lambda'),
             handler='lambda_code.handler',
-            role=fn_role,
+            role=lambda_datasetgroups_role,
             environment={
-                'NAME':'bi-createdatasetgroups'
+                'NAME':'bi-lambda-datasetgroups-role-function'
             }
         )
