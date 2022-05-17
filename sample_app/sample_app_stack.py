@@ -13,7 +13,7 @@ class SampleAppStack(Stack):
         super().__init__(scope, construct_id, **kwargs)
 
         role = iam(self, "MyRole",
-                assumed_by=ServicePrincipal("lambda.amazonaws.com")
+                assumed_by=iam.ServicePrincipal("lambda.amazonaws.com")
             )
 
 #        bucket = s3.Bucket(self, "herbertpierishuhuhaha")
