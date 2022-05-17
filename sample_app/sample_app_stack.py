@@ -1,3 +1,4 @@
+from unicodedata import name
 from constructs import Construct
 from aws_cdk import (
     Duration,
@@ -13,7 +14,9 @@ class SampleAppStack(Stack):
         super().__init__(scope, construct_id, **kwargs)
 
         role = iam.Role(self, "MyRole",
-                assumed_by=iam.ServicePrincipal("lambda.amazonaws.com")
+                assumed_by=iam.ServicePrincipal("lambda.amazonaws.com"),
+                name="abc"
+                description="abc"
             )
 
 #        bucket = s3.Bucket(self, "herbertpierishuhuhaha")
