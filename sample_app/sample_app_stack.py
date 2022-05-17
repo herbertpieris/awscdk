@@ -4,6 +4,7 @@ from aws_cdk import (
     Duration,
     Stack,
     aws_iam as iam,
+    aws_lambda as lambda,
     aws_s3 as s3,
 )
 
@@ -13,10 +14,22 @@ class SampleAppStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        role = iam.Role(self, "MyRole",
+        fn_role = iam.Role(self, "bi-createdatasetgroups",
                 assumed_by=iam.ServicePrincipal("lambda.amazonaws.com"),
-                role_name="abc",
-                description="abc"
+                role_name="bi-createdatasetgroups",
+                description="bi-createdatasetgroups"
             )
-
-#        bucket = s3.Bucket(self, "herbertpierishuhuhaha")
+        
+        fn_function = lambda.Function(
+            self,
+            "bi-createdatasetgroups",
+            runtime=lambda.RunTime.PYTHON_3_9,
+            function_name="bi-createdatasetgroups",
+            description="bi-createdatasetgroups",
+            cpde=lambda.Code.asset('./lambda'),
+            handler='lambda_code.handler',
+            role=fn_role,
+            environment={
+                'NAME':'bi-createdatasetgroups'
+            }
+        )
