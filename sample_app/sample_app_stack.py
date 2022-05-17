@@ -23,7 +23,7 @@ class SampleAppStack(Stack):
         fn_function = lambda_.Function(
             self,
             "bi-createdatasetgroups",
-            runtime=lambda_.RunTime.PYTHON_3_9,
+            runtime=lambda_.Runtime.PYTHON_3_9,
             function_name="bi-createdatasetgroups",
             description="bi-createdatasetgroups",
             cpde=lambda_.Code.asset('./lambda'),
