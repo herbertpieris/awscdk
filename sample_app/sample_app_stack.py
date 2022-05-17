@@ -2,10 +2,7 @@ from constructs import Construct
 from aws_cdk import (
     Duration,
     Stack,
-    # aws_iam as iam,
-    # aws_sqs as sqs,
-    # aws_sns as sns,
-    # aws_sns_subscriptions as subs,
+    aws_iam as iam,
     aws_s3 as s3,
 )
 
@@ -15,15 +12,8 @@ class SampleAppStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        # queue = sqs.Queue(
-        #     self, "SampleAppQueue",
-        #     visibility_timeout=Duration.seconds(300),
-        # )
+        role = iam(self, "MyRole",
+                assumed_by=ServicePrincipal("lambda.amazonaws.com")
+            )
 
-        # topic = sns.Topic(
-        #     self, "SampleAppTopic"
-        # )
-
-        # topic.add_subscription(subs.SqsSubscription(queue))
-
-        bucket = s3.Bucket(self, "herbertpierishuhuhaha")
+#        bucket = s3.Bucket(self, "herbertpierishuhuhaha")
