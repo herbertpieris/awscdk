@@ -4,7 +4,7 @@ from aws_cdk import (
     Duration,
     Stack,
     aws_iam as iam,
-    aws_lambda as lambda,
+    aws_lambda as lambda_,
     aws_s3 as s3,
 )
 
@@ -20,13 +20,13 @@ class SampleAppStack(Stack):
                 description="bi-createdatasetgroups"
             )
         
-        fn_function = lambda.Function(
+        fn_function = lambda_.Function(
             self,
             "bi-createdatasetgroups",
-            runtime=lambda.RunTime.PYTHON_3_9,
+            runtime=lambda_.RunTime.PYTHON_3_9,
             function_name="bi-createdatasetgroups",
             description="bi-createdatasetgroups",
-            cpde=lambda.Code.asset('./lambda'),
+            cpde=lambda_.Code.asset('./lambda'),
             handler='lambda_code.handler',
             role=fn_role,
             environment={
