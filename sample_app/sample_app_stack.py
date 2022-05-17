@@ -26,7 +26,7 @@ class SampleAppStack(Stack):
             runtime=lambda_.Runtime.PYTHON_3_9,
             function_name="bi-createdatasetgroups",
             description="bi-createdatasetgroups",
-            cpde=lambda_.Code.from_asset('./lambda'),
+            code=lambda_.Code.from_asset('./lambda'),
             handler='lambda_code.handler',
             role=fn_role,
             environment={
