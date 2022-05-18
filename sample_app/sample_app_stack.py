@@ -27,7 +27,7 @@ class SampleAppStack(Stack):
             function_name="bi-lambda-datasetgroups-role-function",
             description="bi-lambda-datasetgroups-role-function",
             code=lambda_.Code.from_asset('./lambda'),
-            handler='lambda_code.handler',
+            handler='forecastdatagroupset.lambda_handler',
             role=lambda_datasetgroups_role,
             environment={
                 'NAME':'bi-lambda-datasetgroups-role-function'
