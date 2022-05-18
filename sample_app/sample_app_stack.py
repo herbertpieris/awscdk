@@ -24,12 +24,9 @@ class SampleAppStack(Stack):
             self,
             "bi-lambda-datasetgroups-role-function",
             runtime=lambda_.Runtime.PYTHON_3_9,
-            function_name="bi-lambda-datasetgroups-role-function",
-            description="bi-lambda-datasetgroups-role-function",
+            function_name="bi-lambda-datasetgroups-function",
+            description="bi-lambda-datasetgroups-function",
             code=lambda_.Code.from_asset('./lambda'),
             handler='forecastdatagroupset.lambda_handler',
-            role=lambda_datasetgroups_role,
-            environment={
-                'NAME':'bi-lambda-datasetgroups-role-function'
-            }
+            role=lambda_datasetgroups_role
         )
