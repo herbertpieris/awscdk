@@ -14,7 +14,7 @@ class SampleAppStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        lambda_datasetgroups_policy = iam.PolicyDocument(
+        lambda_datasetgroups_policy = iam.ManagedPolicy(
             statements=[
                 iam.PolicyStatement(
                     actions=["forecast:CreateDatasetGroup"],
@@ -27,8 +27,7 @@ class SampleAppStack(Stack):
         lambda_datasetgroups_role = iam.Role(self, "bi-lambda-datasetgroups-role",
                 assumed_by=iam.ServicePrincipal("lambda.amazonaws.com"),
                 role_name="bi-lambda-datasetgroups-role",
-                description="bi-lambda-datasetgroups-role",
-                inline_policies=lambda_datasetgroups_policy
+                description="bi-lambda-datasetgroups-role"
             )    
 
         bi_lambda_datasetgroups_role_function = lambda_.Function(
