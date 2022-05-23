@@ -32,8 +32,7 @@ class SampleAppStack(Stack):
                     statements=[
                         iam.PolicyStatement(
                             actions=["forecast:CreateDatasetGroup"],
-                            resources=["*"],
-                            effect=iam.Effect.ALLOW
+                            resources=["*"]
                         )
                     ]
                 )
