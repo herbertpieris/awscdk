@@ -17,9 +17,9 @@ class SampleAppStack(Stack):
         lambda_datasetgroups_policy = iam.ManagedPolicy(
             statements=[
                 iam.PolicyStatement(
+                    effect=iam.Effect.ALLOW,
                     actions=["forecast:CreateDatasetGroup"],
-                    resources=["*"],
-                    effect=iam.Effect.ALLOW
+                    resources=["*"]                    
                 )
             ]
         )
