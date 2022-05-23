@@ -28,7 +28,7 @@ class SampleAppStack(Stack):
                 assumed_by=iam.ServicePrincipal("lambda.amazonaws.com"),
                 role_name="bi-lambda-datasetgroups-role",
                 description="bi-lambda-datasetgroups-role",
-                inline_policies=lambda_datasetgroups_policy
+                inline_policies={lambda_datasetgroups_policy}
             )    
 
         bi_lambda_datasetgroups_role_function = lambda_.Function(
