@@ -28,14 +28,17 @@ class SampleAppStack(Stack):
                 assumed_by=iam.ServicePrincipal("lambda.amazonaws.com"),
                 role_name="bi-lambda-datasetgroups-role",
                 description="bi-lambda-datasetgroups-role",
-                inline_policies=iam.PolicyDocument(
-                    statements=[
-                        iam.PolicyStatement(
-                            actions=["forecast:CreateDatasetGroup"],
-                            resources=["*"]
-                        )
-                    ]
-                )
+                inline_policies={
+                    "lambda_datasetgroups_policy" : iam.PolicyDocument(
+                        statements=[
+                            iam.PolicyStatement(
+                                actions=["forecast:CreateDatasetGroup"],
+                                resources=["*"],
+                                effect=iam.Effect.ALLOW
+                            )
+                        ]
+                    )                    
+                }
             )    
 
         bi_lambda_datasetgroups_role_function = lambda_.Function(
