@@ -14,12 +14,12 @@ class SampleAppStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        lambda_datasetgroups_policy = iam.ManagedPolicy(self, "MyManagedPolicy"
+        lambda_datasetgroups_policy = iam.PolicyDocument(
             statements=[
                 iam.PolicyStatement(
-                    effect=iam.Effect.ALLOW,
                     actions=["forecast:CreateDatasetGroup"],
-                    resources=["*"]                    
+                    resources=["*"],
+                    effect=iam.Effect.ALLOW
                 )
             ]
         )
